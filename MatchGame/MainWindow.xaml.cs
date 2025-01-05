@@ -20,6 +20,7 @@ namespace MatchGame
         DispatcherTimer timer = new DispatcherTimer();
         int tenthOfSecondsElapsed;
         int matchesFound;
+        string historyTimer;
 
         public MainWindow()
         {
@@ -38,6 +39,7 @@ namespace MatchGame
             if (matchesFound == 8)
             {
                 timer.Stop();
+                historyTextBlock.Text = timerTextBlock.Text; 
                 timerTextBlock.Text = $"{timerTextBlock.Text} - Play again?";
             }
         }
@@ -61,7 +63,7 @@ namespace MatchGame
             foreach (TextBlock textBlock in mainGrid.Children.OfType<TextBlock>())
             {
 
-                if(textBlock.Name != "timerTextBlock")
+                if(textBlock.Name == "")
                 {
                     textBlock.Visibility = Visibility.Visible;
                     int index = random.Next(animalEmoji.Count);
@@ -122,6 +124,11 @@ namespace MatchGame
                 SetUpGame();
             }               
     
+        }
+
+        private void historyTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
         }
     }
 }
